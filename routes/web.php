@@ -14,7 +14,9 @@ use App\Http\Controllers\FootballController;
 */
 Route::get('/game-result', [FootballController::class, 'index']);
 
-
+Route::get('/', function (){
+    echo "return";
+});
 Route::get('/', [FootballController::class, 'index']);
 Route::get('/play-all', [FootballController::class, 'playall']);
 Route::get('/next-week', [FootballController::class, 'nextweek']);
