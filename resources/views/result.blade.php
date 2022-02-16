@@ -403,6 +403,30 @@
 <div
     class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
     <div class="max-w-12xl mx-auto sm:px-12 lg:px-12">
+        <div class="grid">
+            <div class="col">
+                <div class="add_team_commad">
+                    <form action="/addteam" method="post">
+                        <input type="text" name="team-name" placeholder="Team-name"><br>
+                        <input type="text" name="team-name" placeholder="PTS">
+                        <input type="text" name="team-name" placeholder="P">
+                        <input type="text" name="team-name" placeholder="W"><br>
+                        <input type="text" name="team-name" placeholder="D">
+                        <input type="text" name="team-name" placeholder="L">
+                        <input type="text" name="team-name" placeholder="GD"><br>
+                        <br>
+                        <style>
+                            input {
+                                padding: 10px;
+                                margin: 2px;
+                                border: 1px solid gray;
+                            }
+                        </style>
+                        <input type="button" value="Add Team to database" style="padding: 10px">
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow ">
             <div class="grid grid-cols-1 md:grid-cols-2 background">
                 <div class="result">

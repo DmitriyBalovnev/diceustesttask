@@ -23,7 +23,21 @@ class FootballController extends Controller
 
         return response()->json($result);
     }
+    public function addteam(Request $request)
+    {
+        $teams = new Teams();
 
+        $teams->teamname = $request->name;
+        $teams->pts = $request->pts;
+        $teams->p = $request->p;
+        $teams->w = $request->w;
+        $teams->d = $request->d;
+        $teams->l = $request->l;
+        $teams->gd = $request->gd;
+
+        $teams->save();
+
+    }
     public function playall()
     {
         $generatefakedata = []; // 1 week
