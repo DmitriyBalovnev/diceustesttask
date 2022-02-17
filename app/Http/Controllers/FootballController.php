@@ -17,7 +17,9 @@ class FootballController extends Controller
 
     public function index()
     {
-//        $this->clearalldatabase();
+        if (isset($_GET['action']) == 'clearalldatabase') {
+            $this->clearalldatabase();
+        }
         $leaguetables = LeagueTable::all();
         $matchresults = MatchResults::all();
         $prediction = new Prediction;
@@ -43,6 +45,7 @@ class FootballController extends Controller
         Prediction::query()->delete();
 
     }
+
     public function result()
     {
 
