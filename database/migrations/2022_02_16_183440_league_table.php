@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('LeagueTable', function (Blueprint $table) {
+        Schema::create('league_table', function (Blueprint $table) {
             $table->id();
             $table->string('team_name')->default("team_name");
             $table->integer('pts')->default(0);
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('LeagueTable');
+        Schema::dropIfExists('league_table');
     }
 };

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('weeklyprediction', function (Blueprint $table) {
+        Schema::create('prediction', function (Blueprint $table) {
             $table->id();
-            $table->morphs('prediction');
-            $table->string('name');
+            $table->string('teamname')->default('teamname');
+            $table->string('percentage');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weeklyprediction');
+        Schema::dropIfExists('prediction');
     }
 };

@@ -19,6 +19,7 @@ Route::get('/', [FootballController::class, 'index'])->name('homepage');
 Route::get('/play-all', [FootballController::class, 'playall']);
 Route::get('/next-week', [FootballController::class, 'nextweek']);
 Route::get('/addteam', [FootballController::class, 'addteam']);
+Route::get('/clearalldatabase', [FootballController::class, 'clearalldatabase']);
 
 //Route::get('/game-result', function () {
 //    return view('welcome');

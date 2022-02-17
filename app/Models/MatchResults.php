@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Prunable;
 class MatchResults extends Model
 {
     use HasFactory;
-    use Prunable;
 
-    protected $fillable = ['name'];
-    protected $table = 'MatchResults';
+    protected $table = 'match_results';
 
+
+    public function match(){
+
+    }
 
 }

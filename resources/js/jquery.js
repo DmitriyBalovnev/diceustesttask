@@ -16,3 +16,19 @@ $('#next-week').click( function () {
         console.log(result);
     });
 });
+
+function reqListener() {
+    console.log(this.responseText);
+}
+function playall() {
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", reqListener);
+    oReq.open("GET", "/play-all");
+    oReq.send();
+}
+function nextweek() {
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", reqListener);
+    oReq.open("GET", "/next-week");
+    oReq.send();
+}

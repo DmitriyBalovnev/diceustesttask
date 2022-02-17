@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('MatchResults', function (Blueprint $table) {
+        Schema::create('match_results', function (Blueprint $table) {
             $table->id('matchid')->autoIncrement();
-            $table->string('team1')->default("team_name");
-            $table->string('team2')->default("team_name");
-            $table->integer('goals1')->default(0);
-            $table->integer('goals2')->default(0);
+            $table->string('teamname1')->default("team_name");
+            $table->string('teamname2')->default("team_name");
+            $table->integer('goal1')->default(0);
+            $table->integer('goal2')->default(0);
             $table->timestamps();
         });
     }
@@ -30,7 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MatchResults');
-
+        Schema::dropIfExists('match_results');
     }
 };

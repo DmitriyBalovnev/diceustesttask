@@ -9,6 +9,11 @@ class Prediction extends Model
 {
     use HasFactory;
 
-    protected $table = 'weeklyprediction';
+    protected $table = 'prediction';
+
+    public function Predict(){
+
+//        return $result;
+    }
 
 }

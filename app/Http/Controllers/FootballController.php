@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MatchResults;
 use App\Models\LeagueTable;
+use App\Models\Prediction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,10 +17,32 @@ class FootballController extends Controller
 
     public function index()
     {
-        $teams = LeagueTable::all();
-        return view('result')->with('teams', $teams);
+//        $this->clearalldatabase();
+        $leaguetables = LeagueTable::all();
+        $matchresults = MatchResults::all();
+        $prediction = new Prediction;
+        $leaguetable = LeagueTable::all();
+        foreach ($leaguetable as $index => $item) {
+            if (empty(Prediction::all()->pluck('teamname', $item->team_name)) == false) {
+                $prediction = new Prediction;
+                $prediction->teamname = $item->team_name;
+                $prediction->percentage = "%" . $item->pts;
+                $prediction->save();
+            }
+
+        }
+        $prediction = Prediction::all();
+
+        return view('result')->with('leaguetables', $leaguetables)->with('matchresults', $matchresults)->with('prediction', $prediction);
     }
 
+    public function clearalldatabase()
+    {
+        LeagueTable::query()->delete();
+        MatchResults::query()->delete();
+        Prediction::query()->delete();
+
+    }
     public function result()
     {
 
@@ -31,10 +54,9 @@ class FootballController extends Controller
         if (empty($request->get('teamname'))) {
             return redirect('/');
         }
-        $teams = DB::table('LeagueTable')->where('team_name', $request->get('teamname'))->first();
+        $teams = DB::table('league_table')->where('team_name', $request->get('teamname'))->first();
 
         if ($teams === null) {
-
             $teams = new LeagueTable;
             $teams->team_name = $request->get('teamname');
             $teams->pts = 0;
@@ -45,52 +67,56 @@ class FootballController extends Controller
             $teams->gd = 0;
             $teams->save();
         } else {
-            DB::table('LeagueTable')->where('id', $teams->id)->delete();
+            DB::table('league_table')->where('id', $teams->id)->delete();
         }
         return redirect('/');
     }
 
     public function playall()
     {
-        $teams = LeagueTable::all()->pluck('id');
 
-        $this->play($teams);
+        $this->play();
 
         return $this->index();
     }
 
-    public function play($teams)
+    public function play()
     {
-        $team = new LeagueTable();
-        $match = ['teamid1' => 1, ' teamid2 ' => 1, 'goal1' => 1, ' goal2' => 1];
-        $match = MatchResults::create($match);
 
-        foreach ($teams as $index => $itemid) {
-            $goal = random_int(1, 3);
-            if ($game == 3) {
-                $team->win($itemid);
-            }
-            if ($game == 2) {
-                $team->draw($itemid);
+        $LeagueTable = LeagueTable::all();
+        $MatchResults = new LeagueTable();
+        $Prediction = new Prediction();
 
-            }
-            if ($game == 1) {
-                $team->loose($itemid);
-            }
+        foreach ($LeagueTable as $index => $itemid) {
+            $match = ['teamname1' => $itemid["team_name"], 'teamname2' => $itemid["team_name"], 'goal1' => random_int(1, 3), 'goal2' => random_int(1, 3)];
+            DB::table('match_results')->insert($match);
         }
-
+//        die();
+//        DB::table('league_table')->where('id', $index)->increment('pts', 3);
+//
+//
+//        if ($goals1 > $goals2) {
+//            $MatchResults->win($itemid);
+//        }
+//        if ($goals1 == $goals2) {
+//            $MatchResults->draw($itemid);
+//
+//        }
+//        if ($goals1 < $goals2) {
+//            $MatchResults->loose($itemid);
+//        }
     }
 
     public function nextweek()
     {
-        $teams = new LeagueTable();
-        $teams->pts = '1';
-        $teams->p = '1';
-        $teams->w = '1';
-        $teams->d = '1';
-        $teams->l = '1';
-        $teams->gd = '1';
-        $teams->save();
+//        $teams = new LeagueTable();
+//        $teams->pts = '1';
+//        $teams->p = '1';
+//        $teams->w = '1';
+//        $teams->d = '1';
+//        $teams->l = '1';
+//        $teams->gd = '1';
+//        $teams->save();
 
         $this->index();
     }
