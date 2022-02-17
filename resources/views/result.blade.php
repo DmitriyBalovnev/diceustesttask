@@ -389,6 +389,7 @@
             color: rgba(107, 114, 128, var(--tw-text-opacity))
         }
     }
+
     body {
         font-family: 'Nunito', sans-serif;
     }
@@ -445,7 +446,8 @@
 
 </style>
 <body class="antialiased">
-<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+<div
+    class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
     <div class="max-w-12xl mx-auto sm:px-12 lg:px-12">
         <div class="grid">
             <div class="col">
@@ -461,7 +463,7 @@
                         <br>
                         <input type="submit" value="Add Team to database" style="padding: 10px">
                     </form>
-                    <a href="/clearalldatabase">Clear All</a>
+                    <a href="/?action=clearalldatabase">Clear All</a>
                 </div>
             </div>
         </div>
@@ -470,51 +472,8 @@
                 <div class="result">
                     <div class="tables">
                         <div class="content">
-                            <table class="table">
-                                <caption>League Table</caption>
-                                <thead>
-                                <tr>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Teams</td>
-                                    <td>PTS</td>
-                                    <td>P</td>
-                                    <td>W</td>
-                                    <td>D</td>
-                                    <td>L</td>
-                                    <td>GD</td>
-                                </tr>
-                                @foreach($leaguetables as $leaguetable)
-                                    <tr>
-                                        <td>{{$leaguetable->team_name}}</td>
-                                        <td>{{$leaguetable->pts}}</td>
-                                        <td>{{$leaguetable->p}}</td>
-                                        <td>{{$leaguetable->w}}</td>
-                                        <td>{{$leaguetable->d}}</td>
-                                        <td>{{$leaguetable->l}}</td>
-                                        <td>{{$leaguetable->gd}}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            <table class="table">
-                                <caption>Match Results</caption>
-                                <thead>
-                                <tr>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($matchresults as $matchresult)
-                                    <tr>
-                                        <td>{{$matchresult->teamname1}}</td>
-                                        <td>{{$matchresult->goal1 + $matchresult->goal2}}</td>
-                                        <td>{{$matchresult->teamname2}}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            @include('parts.leaguetable')
+                            @include('parts.matchresults')
                         </div>
                         <div class="inputs">
                             <a href="/play-all" id="play-all" type="button" value="Play All">
@@ -525,23 +484,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="predict-result-2">
-                        <table class="table-result">
-                            <caption>4 Week Predictions fo Championship</caption>
-                            <thead>
-                            <tr></tr>
-                            </thead>
-                            <tbody>
-                            @foreach($prediction as $result)
-                                <tr>
-                                    <td width="100px">{{$result->teamname}}</td>
-                                    <td></td>
-                                    <td width="100px">{{$result->percentage}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    @include('parts.predict-result')
                 </div>
             </div>
         </div>
