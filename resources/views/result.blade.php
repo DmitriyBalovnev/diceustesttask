@@ -406,14 +406,14 @@
         <div class="grid">
             <div class="col">
                 <div class="add_team_commad">
-                    <form action="/addteam" method="post">
-                        <input type="text" name="team-name" placeholder="Team-name"><br>
-                        <input type="text" name="team-name" placeholder="PTS">
-                        <input type="text" name="team-name" placeholder="P">
-                        <input type="text" name="team-name" placeholder="W"><br>
-                        <input type="text" name="team-name" placeholder="D">
-                        <input type="text" name="team-name" placeholder="L">
-                        <input type="text" name="team-name" placeholder="GD"><br>
+                    <form action="/addteam" method="get">
+                        <label for="teams">Choose a Teams:</label>
+                        <select id="teams" name="teamname">
+                            <option value="Chelsea">Chelsea</option>
+                            <option value="Arsenal">Arsenal</option>
+                            <option value="Manchester City">Manchester City</option>
+                            <option value="Liverpool">Liverpool</option>
+                        </select>
                         <br>
                         <style>
                             input {
@@ -422,8 +422,27 @@
                                 border: 1px solid gray;
                             }
                         </style>
-                        <input type="button" value="Add Team to database" style="padding: 10px">
+                        <input type="submit" value="Add Team to database" style="padding: 10px">
                     </form>
+                    <script>
+                        function reqListener() {
+                            console.log(this.responseText);
+                        }
+
+                        function playall() {
+                            var oReq = new XMLHttpRequest();
+                            oReq.addEventListener("load", reqListener);
+                            oReq.open("GET", "/play-all");
+                            oReq.send();
+                        }
+
+                        function nextweek() {
+                            var oReq = new XMLHttpRequest();
+                            oReq.addEventListener("load", reqListener);
+                            oReq.open("GET", "/next-week");
+                            oReq.send();
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -448,42 +467,17 @@
                                     <td>L</td>
                                     <td>GD</td>
                                 </tr>
-                                <tr>
-                                    <td>Chelsea</td>
-                                    <td>10</td>
-                                    <td>4</td>
-                                    <td>3</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                    <td>11</td>
-                                </tr>
-                                <tr>
-                                    <td>Arsenal</td>
-                                    <td>8</td>
-                                    <td>4</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>0</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td>Manchester City</td>
-                                    <td>8</td>
-                                    <td>4</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>0</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>Liverpool</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>0</td>
-                                </tr>
+                                @foreach($teams as $team)
+                                    <tr>
+                                        <td>{{$team->team_name}}</td>
+                                        <td>{{$team->pts}}</td>
+                                        <td>{{$team->p}}</td>
+                                        <td>{{$team->w}}</td>
+                                        <td>{{$team->d}}</td>
+                                        <td>{{$team->l}}</td>
+                                        <td>{{$team->gd}}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -510,42 +504,46 @@
                         </div>
                     </div>
                     <div class="inputs">
-                        <input id="play-all" type="button" value="Play All">
-                        <input id="next-week" type="button" value="Next Week">
+                        <a href="/play-all" id="play-all" type="button" value="Play All">
+                            play-all
+                        </a>
+                        <a href="/next-week" id="next-week" type="button" value="Next Week">
+                            next-week
+                        </a>
                     </div>
-                </div>
-                <div class="predict-result-2">
-                    <table class="table-result">
-                        <caption>4 Week Predictions fo Championship</caption>
-                        <thead>
-                        <tr>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td width="100px">Chelsea</td>
-                            <td></td>
-                            <td>%45</td>
-                        </tr>
-                        <tr>
+                    <div class="predict-result-2">
+                        <table class="table-result">
+                            <caption>4 Week Predictions fo Championship</caption>
+                            <thead>
+                            <tr>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td width="100px">Chelsea</td>
+                                <td></td>
+                                <td>%45</td>
+                            </tr>
+                            <tr>
 
-                            <td width="100px">Arsenal</td>
-                            <td></td>
-                            <td>%25</td>
-                        </tr>
-                        <tr>
+                                <td width="100px">Arsenal</td>
+                                <td></td>
+                                <td>%25</td>
+                            </tr>
+                            <tr>
 
-                            <td width="100px">Manchester City</td>
-                            <td></td>
-                            <td>%25</td>
-                        </tr>
-                        <tr>
-                            <td width="100px">Liverpool</td>
-                            <td></td>
-                            <td>%5</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                <td width="100px">Manchester City</td>
+                                <td></td>
+                                <td>%25</td>
+                            </tr>
+                            <tr>
+                                <td width="100px">Liverpool</td>
+                                <td></td>
+                                <td>%5</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,19 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teams extends Model
+class Prediction extends Model
 {
     use HasFactory;
 
-    protected $table = 'teams';
+    protected $table = 'weeklyprediction';
 
-    public function playall()
-    {
-
-    }
-
-    public function nextweek()
-    {
-
-    }
 }
