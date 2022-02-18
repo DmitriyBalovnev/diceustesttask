@@ -112,14 +112,10 @@ class FootballController extends Controller
 
     public function nextweek()
     {
-//        $teams = new LeagueTable();
-//        $teams->pts = '1';
-//        $teams->p = '1';
-//        $teams->w = '1';
-//        $teams->d = '1';
-//        $teams->l = '1';
-//        $teams->gd = '1';
-//        $teams->save();
+        $teams = new LeagueTable();
+
+        $teams = ['pts' => 1, 'p' => 1, 'w' => 1, 'd' => 1, 'l' => 1, 'gd' => 1];
+        $teams->save($teams);
 
         $this->index();
     }
