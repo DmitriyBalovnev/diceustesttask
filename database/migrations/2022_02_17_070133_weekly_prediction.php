@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('percentage');
             $table->timestamps();
         });
-    }
+
+        Schema::create('prediction', function (Blueprint $table) {
+
+        }
 
     /**
      * Reverse the migrations.
