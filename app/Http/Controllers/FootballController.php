@@ -61,14 +61,8 @@ class FootballController extends Controller
 
         if ($teams === null) {
             $teams = new LeagueTable;
-            $teams->team_name = $request->get('teamname');
-            $teams->pts = 0;
-            $teams->p = 0;
-            $teams->w = 0;
-            $teams->d = 0;
-            $teams->l = 0;
-            $teams->gd = 0;
-            $teams->save();
+            $params = ['team_name' => $request->get('teamname'), 'pts' => 1, 'p' => 1, 'w' => 1, 'd' => 1, 'l' => 1, 'gd' => 1];
+            $teams->save($params);
         } else {
             DB::table('league_table')->where('id', $teams->id)->delete();
         }
@@ -87,35 +81,39 @@ class FootballController extends Controller
     {
 
         $LeagueTable = LeagueTable::all();
-        $MatchResults = new LeagueTable();
+        $MatchResult = new LeagueTable();
         $Prediction = new Prediction();
 
         foreach ($LeagueTable as $index => $itemid) {
             $match = ['teamname1' => $itemid["team_name"], 'teamname2' => $itemid["team_name"], 'goal1' => random_int(1, 3), 'goal2' => random_int(1, 3)];
             DB::table('match_results')->insert($match);
         }
-//        die();
-//        DB::table('league_table')->where('id', $index)->increment('pts', 3);
-//
-//
-//        if ($goals1 > $goals2) {
-//            $MatchResults->win($itemid);
-//        }
-//        if ($goals1 == $goals2) {
-//            $MatchResults->draw($itemid);
-//
-//        }
-//        if ($goals1 < $goals2) {
-//            $MatchResults->loose($itemid);
-//        }
+
+        DB::table('league_table')->where('id', $index)->increment('pts', 3);
+        $MatchResults = MatchResults::all();
+        foreach ($MatchResults as $index => $matchResult) {
+
+            $goals1 = $matchResult->goal1;
+            $goals2 = $matchResult->goal2;
+
+            if ($goals1 > $goals2) {
+                $MatchResult->win($matchResult);
+            }
+            if ($goals1 == $goals2) {
+                $MatchResult->draw($itemid);
+
+            }
+            if ($goals1 < $goals2) {
+                $MatchResult->loose($itemid);
+            }
+        }
     }
 
     public function nextweek()
     {
         $teams = new LeagueTable();
-
-        $teams = ['pts' => 1, 'p' => 1, 'w' => 1, 'd' => 1, 'l' => 1, 'gd' => 1];
-        $teams->save($teams);
+        $params = ['pts' => 1, 'p' => 1, 'w' => 1, 'd' => 1, 'l' => 1, 'gd' => 1];
+        $teams->save($params);
 
         $this->index();
     }

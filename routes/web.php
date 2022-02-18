@@ -13,12 +13,8 @@ use App\Http\Controllers\FootballController;
 |
 */
 
-echo "route";
-die();
 
 Route::get('/game-result', [FootballController::class, 'index']);
-
-
 Route::get('/', [FootballController::class, 'index'])->name('homepage');
 Route::get('/play-all', [FootballController::class, 'playall']);
 Route::get('/next-week', [FootballController::class, 'nextweek']);
