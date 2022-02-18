@@ -12,6 +12,10 @@ use App\Http\Controllers\FootballController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+echo "route";
+die();
+
 Route::get('/game-result', [FootballController::class, 'index']);
 
 
