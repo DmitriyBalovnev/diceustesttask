@@ -14,8 +14,5 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       \App\Models\LeagueTable::factory(10)->create();
-       \App\Models\MatchResults::factory(10)->create();
-       \App\Models\Prediction::factory(10)->create();
     }
 }

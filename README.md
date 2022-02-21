@@ -14,3 +14,4 @@ L -> Loose game
 GD -> Goal Diffrence
 
 % Percentege of win Championship
+php artisan db:seed --seeder=LeagueTableSeeder

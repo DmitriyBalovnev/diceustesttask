@@ -400,7 +400,7 @@
     }
 
     .background {
-        background-color: gainsboro;
+
     }
 
     .inputs {
@@ -429,13 +429,15 @@
         margin-left: 140px;
     }
 
-    .content, .result {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
+    /*.content, .result {*/
+    /*    display: flex;*/
+    /*    flex-direction: row;*/
+    /*    flex-wrap: nowrap;*/
+    /*    justify-content: center;*/
+    /*}*/
+
+    .prediction {
+        margin-top: 10px;
     }
 
     input {
@@ -449,46 +451,28 @@
 <div
     class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
     <div class="max-w-12xl mx-auto sm:px-12 lg:px-12">
+        <div class="start-game">
+            <h2>Click button to start game</h2>
+            <a href="/clearalldatabase" class="newtournament">New-Tournament</a>
+        </div>
         <div class="grid">
-            <div class="col">
-                <div class="add_team_commad">
-                    <form action="/addteam" method="get">
-                        <label for="teams">Choose a Teams:</label>
-                        <select id="teams" name="teamname">
-                            <option value="Chelsea">Chelsea</option>
-                            <option value="Arsenal">Arsenal</option>
-                            <option value="Manchester City">Manchester City</option>
-                            <option value="Liverpool">Liverpool</option>
-                        </select>
-                        <br>
-                        <input type="submit" value="Add Team to database" style="padding: 10px">
-                    </form>
-                    <a href="/?action=clearalldatabase">Clear All</a>
-                </div>
-            </div>
+            <div class="col"></div>
         </div>
-        <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow ">
-            <div class="grid grid-cols-1 md:grid-cols-2 background">
-                <div class="result">
-                    <div class="tables">
-                        <div class="content">
-                            @include('parts.leaguetable')
-                            @include('parts.matchresults')
-                        </div>
-                        <div class="inputs">
-                            <a href="/play-all" id="play-all" type="button" value="Play All">
-                                play-all
-                            </a>
-                            <a href="/next-week" id="next-week" type="button" value="Next Week">
-                                next-week
-                            </a>
-                        </div>
-                    </div>
-                    @include('parts.predict-result')
-                </div>
-            </div>
-        </div>
+        @include('parts.result')
     </div>
+    <style type="text/css">
+        .start-game {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newtournament {
+            height: 20px;
+            background-color: green;
+            margin: 0 auto;
+            padding: 10px;
+        }
+    </style>
 </div>
 </body>
 </html>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('teamname2')->default("team_name");
             $table->integer('goal1')->default(0);
             $table->integer('goal2')->default(0);
+            $table->integer('week')->default(0);
             $table->timestamps();
         });
     }

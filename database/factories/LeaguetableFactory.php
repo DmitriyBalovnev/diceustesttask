@@ -18,14 +18,7 @@ class LeaguetableFactory extends Factory
     public function definition()
     {
         return [
-            'team_name' => $this->faker->name(),
-            'pts' => Str::random(10),
-            'p' => Str::random(10),
-            'w' => Str::random(10),
-            'd' => Str::random(10),
-            'l' => Str::random(10),
-            'gd' => Str::random(10),
-            'gamesid' => Str::random(10),
+
         ];
     }
 }

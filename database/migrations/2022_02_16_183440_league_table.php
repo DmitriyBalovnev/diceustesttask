@@ -22,7 +22,6 @@ return new class extends Migration
             $table->integer('d')->default(0);
             $table->integer('l')->default(0);
             $table->integer('gd')->default(0);
-            $table->integer('gamesid')->default(0);
             $table->timestamps();
         });
 

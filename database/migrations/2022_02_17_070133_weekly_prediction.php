@@ -15,12 +15,9 @@ return new class extends Migration {
         Schema::create('prediction', function (Blueprint $table) {
             $table->id();
             $table->string('teamname')->default('teamname');
-            $table->string('percentage');
+            $table->string('percentage')->default(0);
+            $table->string('week')->default(0);
             $table->timestamps();
-        });
-
-        Schema::create('prediction', function (Blueprint $table) {
-
         });
 
     }

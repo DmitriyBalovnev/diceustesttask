@@ -1,0 +1,8 @@
+return response()->json([
+    'html' => view('your-table-view', compact('users'))->render()
+]);
+
+
+success:function(data) {
+    $('#ajaxResults').html(data.html);
+}

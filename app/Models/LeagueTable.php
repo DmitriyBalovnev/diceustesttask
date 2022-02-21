@@ -10,42 +10,40 @@ class LeagueTable extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['team_name', 'pts', 'p', 'w', 'd', 'l', 'gd'];
-
     protected $table = 'league_table';
 
-    public function win($teamid)
+    public static function win($teamname)
     {
-        DB::table('league_table')->where('id', $teamid)->increment('pts', 3);
-        DB::table('league_table')->where('id', $teamid)->increment('p', 1);
-        DB::table('league_table')->where('id', $teamid)->increment('w', 1);
-        DB::table('league_table')->where('id', $teamid)->increment('d', 0);
-        DB::table('league_table')->where('id', $teamid)->increment('l', 0);
-        DB::table('league_table')->where('id', $teamid)->increment('gd', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('pts', 3);
+        LeagueTable::query()->where('team_name', $teamname)->increment('p', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('w', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('d', 0);
+        LeagueTable::query()->where('team_name', $teamname)->increment('l', 0);
+        LeagueTable::query()->where('team_name', $teamname)->increment('gd', 1);
     }
 
-    public function draw($teamid)
+    public static function draw($teamname)
     {
-        DB::table('league_table')->where('id', $teamid)->increment('pts', 2);
-        DB::table('league_table')->where('id', $teamid)->increment('p', 1);
-        DB::table('league_table')->where('id', $teamid)->increment('w', 0);
-        DB::table('league_table')->where('id', $teamid)->increment('d', 1);
-        DB::table('league_table')->where('id', $teamid)->increment('l', 0);
-        DB::table('league_table')->where('id', $teamid)->increment('gd', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('pts', 2);
+        LeagueTable::query()->where('team_name', $teamname)->increment('p', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('w', 0);
+        LeagueTable::query()->where('team_name', $teamname)->increment('d', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('l', 0);
+        LeagueTable::query()->where('team_name', $teamname)->increment('gd', 1);
     }
 
-    public function loose($teamid)
+    public static function loose($teamname)
     {
-        DB::table('league_table')->where('id', $teamid)->increment('pts', 1);
-        DB::table('league_table')->where('id', $teamid)->increment('p', 1);
-        DB::table('league_table')->where('id', $teamid)->increment('w', 0);
-        DB::table('league_table')->where('id', $teamid)->increment('d', 0);
-        DB::table('league_table')->where('id', $teamid)->increment('l', 1);
-        DB::table('league_table')->where('id', $teamid)->increment('gd', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('pts', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('p', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('w', 0);
+        LeagueTable::query()->where('team_name', $teamname)->increment('d', 0);
+        LeagueTable::query()->where('team_name', $teamname)->increment('l', 1);
+        LeagueTable::query()->where('team_name', $teamname)->increment('gd', 1);
 
     }
 
-    public function percentcalcsummary()
+    public static function percentcalcsummary()
     {
 
     }

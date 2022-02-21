@@ -23,8 +23,8 @@ services:
         restart: unless-stopped
         tty: true
         ports:
-            - "80:80"
-            - "443:443"
+            - "80:8888"
+            - "443:444"
         networks:
             - app-network
 
@@ -35,7 +35,7 @@ services:
         restart: unless-stopped
         tty: true
         ports:
-            - "3306:3306"
+            - "3306:3333"
         environment:
             MYSQL_DATABASE: laravel
             MYSQL_ROOT_PASSWORD: your_mysql_root_password
