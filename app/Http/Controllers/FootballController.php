@@ -27,7 +27,9 @@ class FootballController extends Controller
         $prediction = Prediction::all();
         $weeknow = MatchResults::all()->take('4');
         empty($weeknow) ? $weeknow = 0 : $weeknow = 0;
+
         return view('layout')->with('leaguetables', $leaguetables)->with('matchresults', $matchresults)->with('prediction', $prediction)->with('week', $weeknow);
+
     }
 
     public function clearAllDatabase()
@@ -35,6 +37,15 @@ class FootballController extends Controller
         LeagueTable::query()->truncate();
         MatchResults::query()->delete();
         Prediction::query()->delete();
+
+        $array = ['team_name' => 'Chelsea', 'pts' => 0, 'p' => 0, 'w' => 0, 'd' => 0, 'l' => 0, 'gd' => 0,];
+        LeagueTable::query()->insert($array);
+        $array = ['team_name' => 'Arsenal', 'pts' => 0, 'p' => 0, 'w' => 0, 'd' => 0, 'l' => 0, 'gd' => 0,];
+        LeagueTable::query()->insert($array);
+        $array = ['team_name' => 'Manchester City', 'pts' => 0, 'p' => 0, 'w' => 0, 'd' => 0, 'l' => 0, 'gd' => 0,];
+        LeagueTable::query()->insert($array);
+        $array = ['team_name' => 'Liverpool', 'pts' => 0, 'p' => 0, 'w' => 0, 'd' => 0, 'l' => 0, 'gd' => 0,];
+        LeagueTable::query()->insert($array);
 
         return redirect('/');
     }
@@ -68,12 +79,12 @@ class FootballController extends Controller
     public function playAll()
     {
 
-        $this->play();
+        $this->playTournament();
 
         return redirect('/');
     }
 
-    public function play()
+    public function playTournament()
     {
         $LeagueTable = LeagueTable::all();
         $MatchResult = MatchResults::all();

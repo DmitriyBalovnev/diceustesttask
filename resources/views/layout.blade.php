@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
     /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -453,26 +454,124 @@
     <div class="max-w-12xl mx-auto sm:px-12 lg:px-12">
         <div class="start-game">
             <h2>Click button to start game</h2>
-            <a href="/clearalldatabase" class="newtournament">New-Tournament</a>
+            <a href="" id="newtournament" class="newtournament">New-Tournament</a>
         </div>
-        <div class="grid">
-            <div class="col"></div>
+        <div class="blocks grid mt-12 bg-white dark:bg-gray-800 overflow-hidden  ">
+            <div class="block1 tables content grid">
+                <table class="table">
+                    <caption>League Table</caption>
+                    <thead>
+                    <tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Teams</td>
+                        <td>PTS</td>
+                        <td>P</td>
+                        <td>W</td>
+                        <td>D</td>
+                        <td>L</td>
+                        <td>GD</td>
+                    </tr>
+                    @foreach($leaguetables as $leaguetable)
+                        <tr>
+                            <td>{{$leaguetable->team_name}}</td>
+                            <td>{{$leaguetable->pts}}</td>
+                            <td>{{$leaguetable->p}}</td>
+                            <td>{{$leaguetable->w}}</td>
+                            <td>{{$leaguetable->d}}</td>
+                            <td>{{$leaguetable->l}}</td>
+                            <td>{{$leaguetable->gd}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <table class="table">
+                    <caption>{{$week}} Match Results</caption>
+                    <thead>
+                    <tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($matchresults as $matchresult)
+                        <tr>
+                            <td>{{$matchresult->teamname1}}</td>
+                            <td>{{$matchresult->goal1 .'-'. $matchresult->goal2}}</td>
+                            <td>{{$matchresult->teamname2}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="block2">
+                <table class="predict-result-2 prediction table-result">
+                    <caption>{{$week}} Week Predictions fo Championship</caption>
+                    <thead>
+                    <tr></tr>
+                    </thead>
+                    <tbody>
+                    @foreach($prediction as $result)
+                        <tr>
+                            <td>{{$result->teamname}}</td>
+                            <td></td>
+                            <td>{{$result->percentage}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-        @include('parts.result')
+        <div class="inputs">
+            <a class="play-all" href="/play-all?week={{$week}}" id="play-all" type="button"
+               value="Play All">
+                play-all
+            </a>
+            <a class="next-week" href="/next-week?week={{$week+1}}" id="next-week" type="button" value="Next Week">
+                next-week
+            </a>
+        </div>
     </div>
-    <style type="text/css">
-        .start-game {
-            margin: 0 auto;
-            text-align: center;
-        }
+</div>
 
-        .newtournament {
-            height: 20px;
-            background-color: green;
-            margin: 0 auto;
-            padding: 10px;
-        }
-    </style>
+<script>
+    $('#newtournament').click(function () {
+
+    });
+
+</script>
+<style>
+    table.predict-result-2 caption {
+        width: 200px;
+    }
+    .blocks, .block1, .block2 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        padding: 20px;
+    }
+    .start-game {
+        margin: 40px auto;
+        text-align: center;
+    }
+
+    .predict-result-2 {
+        border: 1px solid gray;
+    }
+
+    .newtournament {
+        height: 20px;
+        background-color: green;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    .play-all, .next-week {
+        background-color: red;
+    }
+</style>
 </div>
 </body>
 </html>
