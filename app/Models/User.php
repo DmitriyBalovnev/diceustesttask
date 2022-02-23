@@ -31,12 +31,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'PTS',
-        'P',
-        'W',
-        'D',
-        'L',
-        'GD',
     ];
 
     /**

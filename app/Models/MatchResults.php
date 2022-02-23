@@ -12,8 +12,4 @@ class MatchResults extends Model
 
     protected $table = 'match_results';
 
-    public function match(){
-
-    }
-
 }

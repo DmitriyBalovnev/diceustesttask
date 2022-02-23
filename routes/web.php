@@ -21,3 +21,12 @@ Route::get('/next-week', [FootballController::class, 'nextweek']);
 Route::get('/addteam', [FootballController::class, 'addteam']);
 Route::get('/clearalldatabase', [FootballController::class, 'clearalldatabase']);
 
+//Resource
+
+Route::resource('photos', PhotoController::class)->only([
+    'index', 'show'
+]);
+
+Route::resource('photos', PhotoController::class)->except([
+    'create', 'store', 'update', 'destroy'
+]);

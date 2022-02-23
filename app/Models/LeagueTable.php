@@ -14,37 +14,20 @@ class LeagueTable extends Model
 
     public static function win($teamname)
     {
-        LeagueTable::query()->where('team_name', $teamname)->increment('pts', 3);
-        LeagueTable::query()->where('team_name', $teamname)->increment('p', 1);
-        LeagueTable::query()->where('team_name', $teamname)->increment('w', 1);
-        LeagueTable::query()->where('team_name', $teamname)->increment('d', 0);
-        LeagueTable::query()->where('team_name', $teamname)->increment('l', 0);
-        LeagueTable::query()->where('team_name', $teamname)->increment('gd', 1);
+        $score = ['pts' => 3, 'p' => 1, 'w' => 1, 'd' => 0, 'l' => 0, 'gd' => 1];
+        LeagueTable::query()->where('team_name', $teamname)->increment('', '', $score);
     }
 
     public static function draw($teamname)
     {
-        LeagueTable::query()->where('team_name', $teamname)->increment('pts', 2);
-        LeagueTable::query()->where('team_name', $teamname)->increment('p', 1);
-        LeagueTable::query()->where('team_name', $teamname)->increment('w', 0);
-        LeagueTable::query()->where('team_name', $teamname)->increment('d', 1);
-        LeagueTable::query()->where('team_name', $teamname)->increment('l', 0);
-        LeagueTable::query()->where('team_name', $teamname)->increment('gd', 1);
+        $score = ['pts' => 2, 'p' => 1, 'w' => 0, 'd' => 1, 'l' => 0, 'gd' => 1];
+        LeagueTable::query()->where('team_name', $teamname)->increment('pts', 2, $score);
     }
 
     public static function loose($teamname)
     {
-        LeagueTable::query()->where('team_name', $teamname)->increment('pts', 1);
-        LeagueTable::query()->where('team_name', $teamname)->increment('p', 1);
-        LeagueTable::query()->where('team_name', $teamname)->increment('w', 0);
-        LeagueTable::query()->where('team_name', $teamname)->increment('d', 0);
-        LeagueTable::query()->where('team_name', $teamname)->increment('l', 1);
-        LeagueTable::query()->where('team_name', $teamname)->increment('gd', 1);
-
+        $score = ['pts' => 1, 'p' => 1, 'w' => 0, 'd' => 0, 'l' => 1, 'gd' => 1];
+        LeagueTable::query()->where('team_name', $teamname)->increment('pts', 2, $score);
     }
 
-    public static function percentcalcsummary()
-    {
-
-    }
 }
