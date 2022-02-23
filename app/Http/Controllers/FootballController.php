@@ -31,9 +31,7 @@ class FootballController extends Controller
         $weeknow = MatchResults::all()->take('4');
         empty($weeknow) ? $weeknow = 0 : $weeknow = 0;
 
-        $html = response()->json([
-            'html' => view('layout')->with('leaguetables', $leaguetables)->with('matchresults', $matchresults)->with('prediction', $prediction)->with('week', $weeknow)
-        ]);
+       return view('layout')->with('leaguetables', $leaguetables)->with('matchresults', $matchresults)->with('prediction', $prediction)->with('week', $weeknow);
     }
 
     public function clearAllDatabase()
@@ -140,7 +138,7 @@ class FootballController extends Controller
         $prediction = Prediction::all();
 
         return response()->json([
-           'html' => view('layout')->with('leaguetables', $leaguetables)->with('matchresults', $matchresults)->with('prediction', $prediction)->with('week', $weeknow)
+            'html' => view('layout')->with('leaguetables', $leaguetables)->with('matchresults', $matchresults)->with('prediction', $prediction)->with('week', $weeknow)
         ]);
 
     }

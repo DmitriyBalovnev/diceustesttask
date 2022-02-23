@@ -15,18 +15,18 @@ use App\Http\Controllers\FootballController;
 
 Route::get('/', [FootballController::class, 'index'])->name('homepage');
 
-Route::get('/game-result', [FootballController::class, 'index']);
-Route::get('/play-all', [FootballController::class, 'playall']);
-Route::get('/next-week', [FootballController::class, 'nextweek']);
+Route::get('/gameresult', [FootballController::class, 'index']);
+Route::get('/playall', [FootballController::class, 'playall']);
+Route::get('/nextweek', [FootballController::class, 'nextweek']);
 Route::get('/addteam', [FootballController::class, 'addteam']);
 Route::get('/clearalldatabase', [FootballController::class, 'clearalldatabase']);
 
 //Resource
 
-Route::resource('photos', PhotoController::class)->only([
-    'index', 'show'
-]);
-
-Route::resource('photos', PhotoController::class)->except([
-    'create', 'store', 'update', 'destroy'
-]);
+//Route::resource('photos', PhotoController::class)->only([
+//    'index', 'show'
+//]);
+//
+//Route::resource('photos', PhotoController::class)->except([
+//    'create', 'store', 'update', 'destroy'
+//]);

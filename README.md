@@ -16,3 +16,4 @@ GD -> Goal Diffrence
 % Percentege of win Championship
 php artisan db:seed --seeder=LeagueTableSeeder
 https://github.com/DmitriyBalovnev/Diceus_TestTask/blob/master/png/Screenshot_5.png
+"# diceustesttask" 
